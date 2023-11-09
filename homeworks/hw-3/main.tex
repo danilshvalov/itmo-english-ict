@@ -1,0 +1,140 @@
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[russian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[
+  left=20mm,
+  right=10mm,
+  top=20mm,
+  bottom=20mm
+]{geometry}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[
+  figurename=Figure,
+  labelsep=endash,
+]{caption}
+\usepackage[outputdir=build, newfloat]{minted}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=blue,
+  urlcolor=blue,
+}
+
+\renewcommand*{\labelitemi}{---}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Листинг}
+
+\setminted{
+  fontsize=\footnotesize,
+}
+
+\setmonofont{JetBrains Mono}[
+  SizeFeatures={Size=11},
+]
+
+\setlength{\parskip}{6pt}
+
+\setlength{\parindent}{1cm}
+\setlist[itemize]{itemsep=0em,topsep=0em,parsep=0em,partopsep=0em,leftmargin=2.0cm}
+\setlist[enumerate]{itemsep=0em,topsep=0em,parsep=0em,partopsep=0em,leftmargin=2.0cm}
+
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+
+\titleformat{\section}{\normalfont\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\titleformat*{\section}{\normalfont\bfseries}
+\titleformat*{\subsection}{\normalfont\bfseries}
+
+\linespread{1.5}
+\renewcommand{\baselinestretch}{1.5}
+\begin{document}
+
+\begin{flushright}
+  K33211 Daniil Shvalov
+\end{flushright}
+
+\begin{center}
+  \textbf{Homework 3}
+
+  C++ programming language
+\end{center}
+
+C++ is a compiled, statically typed general-purpose language. What does it mean?
+Let's start in order.
+
+To run a program in C++, compilation of the code is required. Without this, you
+will not be able to execute the program. Thanks to compilation, C++ programs are
+efficient and optimized, both in time and in memory.
+
+Static typing means that all objects that the programmer works with must be
+spelled out as language types. Otherwise, the program will not compile. This
+helps to catch a lot of errors even at the compilation stage.
+
+C++ is a general purpose language. This means that it can be used for a wide
+range of tasks. Basically, C++ is used for high-load systems, systems requiring
+low latency, real-time systems, games. If you need to write a web server that
+will be able to withstand up to several thousand requests per second, then C++
+is your choice.
+
+C++ supports various programming paradigms. For example, C++ supports all the
+concepts of object-oriented programming. It also allows you to write code in an
+imperative and functional style. C++ is a very flexible language, it practically
+does not limit the programmer in the style of writing code and in the approaches
+used. This allows you to implement many different programs, while not losing
+performance.
+
+The syntax is quite simple and is found in many languages. When declaring a
+variable, its type is first specified, then its name, and then its value. When
+declaring a function, the type of the return value is first specified, then its
+name and arguments. All assignment, initialization, and function call
+expressions must end with a semicolon.
+
+Consider an example. Let's say we want to write a function that adds one to
+the passed value, that is, an increment function. To do this, first we need to
+write the type of the return value. Let it be int. Then we need to write the
+name of the function, let's call it 'increment'. After that, we need to write
+the arguments of the function. Arguments start with an opening bracket. Then the
+type and name are specified for each argument. Arguments are separated by
+commas. For the increment function, it is enough for us to have one argument.
+We will also choose int as the type and name it as 'arg'. After specifying all
+the arguments, there is a closing bracket. Then the body of the function is in
+curly brackets. For the increment function, you need to assign the value 'arg'
+plus 1 to 'arg', and then return this value using the keyword 'return'.
+
+The 'main' function acts as the entry point to the program in C++. It is called
+first when the program starts. The std::cin and std::cout functions are used for
+input and output. With the help of double angle brackets, arguments are passed
+that need to be output or read into. So, for the increment function, we have to
+write std::cout, two left angle brackets, word 'increment', the value to be
+incriminated in brackets and a semicolon.
+
+\begin{minted}{cpp}
+  int increment(int arg) {
+    arg = arg + 1;
+    return arg;
+  }
+
+  int main() {
+    std::cout << increment(1) << '\n';
+  }
+\end{minted}
+
+C++ is a worthy candidate as a programming language of choice for many tasks. I
+believe that in most cases C++ will look advantageous against the background of
+other programming languages.
+
+\end{document}

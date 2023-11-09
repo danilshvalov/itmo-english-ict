@@ -1,0 +1,120 @@
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[russian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[
+  left=20mm,
+  right=10mm,
+  top=20mm,
+  bottom=20mm
+]{geometry}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[
+  figurename=Figure,
+  labelsep=endash,
+]{caption}
+\usepackage[outputdir=build, newfloat]{minted}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=blue,
+  urlcolor=blue,
+}
+
+\renewcommand*{\labelitemi}{---}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Листинг}
+
+\setminted{
+  fontsize=\footnotesize,
+  frame=lines,
+  framesep=2mm,
+}
+
+\setlength{\parskip}{6pt}
+
+\setlength{\parindent}{1cm}
+\setlist[itemize]{itemsep=0em,topsep=0em,parsep=0em,partopsep=0em,leftmargin=2.0cm}
+\setlist[enumerate]{itemsep=0em,topsep=0em,parsep=0em,partopsep=0em,leftmargin=2.0cm}
+
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+
+\titleformat{\section}{\normalfont\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\titleformat*{\section}{\normalfont\bfseries}
+\titleformat*{\subsection}{\normalfont\bfseries}
+
+\linespread{1.5}
+\renewcommand{\baselinestretch}{1.5}
+\begin{document}
+
+\begin{flushright}
+  K33211 Daniil Shvalov
+\end{flushright}
+
+\begin{center}
+  \textbf{Homework 1}
+\end{center}
+
+This task was taken from the Mathematics for Computer Science course of the MIT,
+Problem Set 4, Problem 2 (see
+\href{https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/resources/mit6_042jf10_assn04/}{https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/resources/mit6\_042jf10\_assn04/}).
+
+\textbf{Description}. Let \(G = (V, E)\) be a graph. Recall that the degree of a
+vertex \(v \in V\), denoted \(d_v\), is the number of vertices \(w\) such that
+there is an edge between \(v\) and \(w\).
+
+\textbf{Problem 1}. Prove that
+\[
+  2|E| = \sum_{v \in V} d_v.
+\]
+
+\textbf{Solution}. Let's take a graph in which no vertex is connected to another
+edge. The sum of the degrees of the vertices of this is zero. When adding an
+edge connecting any two vertices, the sum of all degrees increases by 2. Thus,
+the sum of all degrees of vertices is even and equal to twice the number of
+edges.
+
+\textbf{Problem 2}. At a 6.042 ice cream study session (where the ice cream is
+plentiful and it helps you study too) 111 students showed up. During the
+session, some students shook hands with each other (everybody being happy and
+content with the ice-cream and all). Turns out that the University of Chicago
+did another spectacular study here, and counted that each student shook hands
+with exactly 17 other students. Can you debunk this too?
+
+\textbf{Solution}. In this case, \(|V| = 111\), \(|E| = 17\). It follows from what
+was proved earlier that the sum of the degrees of the vertices is always even.
+In this case, since each student shook hands exactly 17 times, the sum of the
+degrees is equal to
+\[
+  \sum_{v \in V} d_v = |V| \cdot |E| = 111 \cdot 17 = 1887.
+\]
+We got an odd number, which means that such a graph cannot exist and the
+University of Chicago was wrong.
+
+\textbf{Problem 3}. And on a more dull note, how many edges does \(K_n\), the
+complete graph on \(n\) vertices, have?
+
+\textbf{Solution}. In a complete graph, every vertex is connected to every other
+vertex. This means that each vertex has degree \(d_v = n - 1\). From the
+previously proved we have:
+\[
+  2 |E| = \sum_{v \in V} d_v = n \cdot (n - 1)
+  \implies
+  |E| = \frac{n \cdot (n - 1)}{2}.
+\]
+
+\end{document}
