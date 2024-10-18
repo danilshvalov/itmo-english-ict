@@ -1,0 +1,135 @@
+\documentclass[a4paper, 14pt]{extarticle}
+\usepackage[russian]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage[
+  left=20mm,
+  right=10mm,
+  top=20mm,
+  bottom=20mm
+]{geometry}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[
+  figurename=Figure,
+  labelsep=endash,
+]{caption}
+\usepackage[outputdir=build, newfloat]{minted}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  filecolor=blue,
+  urlcolor=blue,
+}
+
+\renewcommand*{\labelitemi}{---}
+
+\newenvironment{code}{\captionsetup{type=listing}}{}
+\SetupFloatingEnvironment{listing}{name=Листинг}
+
+\setminted{
+  fontsize=\footnotesize,
+}
+
+\setmonofont{JetBrains Mono}[
+  SizeFeatures={Size=11},
+]
+
+\setlength{\parskip}{6pt}
+
+\setlength{\parindent}{1cm}
+\setlist[itemize]{itemsep=0em,topsep=0em,parsep=0em,partopsep=0em,leftmargin=2.0cm}
+\setlist[enumerate]{itemsep=0em,topsep=0em,parsep=0em,partopsep=0em,leftmargin=2.0cm}
+
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\thesection\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\thesubsection\arabic{subsubsection}.}
+
+\titleformat{\section}{\normalfont\bfseries}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{0.5em}{}
+
+\titleformat*{\section}{\normalfont\bfseries}
+\titleformat*{\subsection}{\normalfont\bfseries}
+
+\linespread{1.5}
+\renewcommand{\baselinestretch}{1.5}
+\begin{document}
+
+\begin{flushright}
+  K33211 Daniil Shvalov
+\end{flushright}
+
+\begin{center}
+  \textbf{Homework 4}
+
+  Banking System DBMS
+\end{center}
+
+Today we will look at the ERD diagram for the banking system. In this diagram
+there are 4 entities.
+\begin{itemize}
+  \item The first entity is an Account that has attributes such as account number and
+  balance. The account number is the primary attribute.
+  \item The next entity is a Branch that has attributes such as branch name,
+  city and assets. The branch name is the primary attribute.
+  \item Another entity Loan contains a loan number and amount. The loan number
+  is the primary attribute.
+  \item The last entity is a Customer, which has attributes such as customer
+  name, city and street. The customer name is the primary attribute.
+\end{itemize}
+
+Consider the relationship between entities.
+\begin{itemize}
+  \item Each Loan must belong to one and only one Branch. On the other hand,
+  Branch can have a lot of Loans. At the same time, Branch may not have Loans at
+  all. Loan determines its relation to Branch using branch name attribute. The
+  cardinality is one-to-many.
+  \item Each Account must belong to one and only one Branch. Branch can also
+  have many accounts. It may also be that no Account belongs to Branch. Account
+  determines its relationship to Branch using branch name attribute. The
+  cardinality is one-to-many.
+  \item There is a many-to-many relationship between Account and Customer
+  entities through the account number attribute and the customer name attribute.
+  \item Between the entities Customer and Loan, the relationship has a
+  cardinality of many-to-many using the attribute of the customer name and the
+  attribute of the loan number.
+\end{itemize}
+
+Now let's look at the representation of our entities in a relational model:
+\begin{itemize}
+  \item Account entity has the attributes account number, branch name and
+  balance. The branch name is a foreign key that is connected to the branch name
+  in the entity Branch.
+  \item Branch entity has the attributes branch name, city and assets.
+  \item Loan entity has the attributes loan number, branch name and amount. The
+  branch name is a foreign key that is connected to the branch name in the
+  entity Branch.
+  \item Customer entity has the attributes customer name, city and street.
+\end{itemize}
+
+Also, to implement many-to-many relationships, two additional
+entities are introduced: Depositor and Borrower.
+\begin{itemize}
+  \item Depositor has the attributes of the customer name and account number.
+  The customer name is a foreign key that is connected to the attribute of the
+  customer name of the Customer entity. The account number is a foreign key that
+  is connected to the account number attribute of the Account entity.
+  \item Borrower has the attributes of the customer name and loan number. The
+  customer name is a foreign key that is connected to the attribute of the
+  customer name of the Customer entity. The loan number is a foreign key that is
+  connected to the loan number attribute of the Loan entity.
+\end{itemize}
+
+This is all that can be said about this schema. I hope that it has become a
+little clearer to you how the banking system works from the inside at the
+database level.
+
+\end{document}
